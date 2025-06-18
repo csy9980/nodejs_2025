@@ -42,3 +42,19 @@ const nowDate2 = moment();
 const christmas = moment("2025-12-25");
 const diffDay3 = christmas.diff(nowDate2, "days");
 console.log("크리스마스까지", diffDay3);
+
+require("moment/locale/ko"); // 한국어 로케일 불러오기
+moment.locale("ko"); // 한국어 로케일 설정
+const s3 = moment();
+console.log(`요일: ${s3.format("d")}`); // 3
+console.log(`요일: ${s3.format("dd")}`); // w
+console.log(`요일: ${s3.format("ddd")}`); // wed
+console.log(`요일: ${s3.format("dddd")}`); // wednesday
+
+// 문제5 올해 크라스마스는 무슨 요일일까
+const xmas = moment("2025-12-25");
+console.log(`올해 크리스마스는 ${xmas.format("dddd")}`);
+
+// 문제6 자신이 태어난 날의 요일 출력
+const myBirth = moment("1986-11-29");
+console.log(`내가 태어난 날은 ${myBirth.format("dddd")}`);
