@@ -1,0 +1,92 @@
+openapi: 3.0.0
+info:
+  title: Notes API
+  version: 1.0.0
+tags:
+  - name: Notes
+    description: 노트 관련 API
+paths:
+  /notes:
+    post:
+      summary: 노트 생성
+      tags: [Notes]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                content:
+                  type: string
+                tag:
+                  type: string
+      responses:
+        "201":
+          description: 생성 성공
+    get:
+      summary: 모든 노트 조회
+      tags: [Notes]
+      responses:
+        "201":
+          description: 조회 성공
+  /notes/{tag}:
+    get:
+      summary: 태그별 노트 조회
+      tags: [Notes]
+      parameters:
+        - in: path
+          name: tag
+          schema:
+            type: string
+          required: true
+          description: 노트 태그
+      responses:
+        "200":
+          description: 조회 성공
+  /notes/{id}:
+    put:
+      summary: 노트 수정
+      tags: [Notes]
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: 노트 ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                content:
+                  type: string
+                tag:
+                  type: string
+      responses:
+        "200":
+          description: 수정 성공
+        "404":
+          description: 노트 없음
+    delete:
+      summary: 노트 삭제
+      tags: [Notes]
+      parameters:
+        - in: path
+          name: id
+          schema:
+            type: integer
+          required: true
+          description: 노트 ID
+      responses:
+        "204":
+          description: 삭제 성공
+        "404":
+          description: 노트 없음
